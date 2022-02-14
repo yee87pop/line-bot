@@ -10,7 +10,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import configparser
-
+from untitled2 import crawler
 
 app = Flask(__name__)
 
@@ -44,8 +44,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='你好'))
-    print(event)
+        TextSendMessage(text=str(event.message.text)))
 
 if __name__ == "__main__":
     app.run()
