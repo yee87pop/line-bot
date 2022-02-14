@@ -1,5 +1,5 @@
 Flask==1.1.2
 line-bot-sdk==1.16.0
 gunicorn==20.0.4
-request==2.26.0
+requests==2.26.0
 beautifulsoup4==4.10.0
