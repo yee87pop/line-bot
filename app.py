@@ -10,7 +10,10 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import configparser
+import requests
+from bs4 import BeautifulSoup
 from untitled2 import crawler
+
 
 app = Flask(__name__)
 
