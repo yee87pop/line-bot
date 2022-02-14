@@ -15,7 +15,7 @@ import configparser
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
-        config.read('config.ini')
+config.read('config.ini')
 
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
@@ -44,8 +44,10 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event))
+        TextSendMessage(text=event.timestamp.text))
 
 
 if __name__ == "__main__":
     app.run()
+
+
