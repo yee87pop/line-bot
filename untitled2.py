@@ -17,4 +17,4 @@ def crawler(reply):
     b=[]
     for s in sel:
         b.append(s.text)
-    return b
+    return str(b)
