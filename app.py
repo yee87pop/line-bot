@@ -9,11 +9,16 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+import configparser
+
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('ni5XsV3T4QI9NMpivwVNMktrHt04BupNGb0gjiLoHVo6pwK6qOTOUoD4swDhvk6CsmV/QS9XmRG3wxl8sa+mIPUFMx+zOD/7pM1Z1309aCHAe/B/oQTKxJrwNSTQsXaNq/dTUXUbY/Jd1RedYfCTZAdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('14bfb8f1e55ca21fc9f5b4d5c241642f')
+config = configparser.ConfigParser()
+        config.read('config.ini')
+
+line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
+handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 
 
 @app.route("/callback", methods=['POST'])
@@ -39,7 +44,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text="傻逼"))
 
 
 if __name__ == "__main__":
