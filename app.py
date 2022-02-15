@@ -48,6 +48,7 @@ def handle_message(event):
     if '學習/' in event.message.text:
         QandA=event.message.text.split('/')
         try:
+            print(QandA)
             learnSomething.input_Q(QandA[1],QandA[2])
             line_bot_api.reply_message(
             event.reply_token,
@@ -58,6 +59,7 @@ def handle_message(event):
             TextSendMessage(event.message.text))
     else:
         try:
+            print(event.message.text)
             ans=learnSomething.output_A(event.message.text)
             line_bot_api.reply_message(
             event.reply_token,
