@@ -10,10 +10,10 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import configparser
-import requests
-from bs4 import BeautifulSoup
-from craw import crawler
 
+import os
+import psycopg2
+import learnSomething
 
 app = Flask(__name__)
 
@@ -45,11 +45,30 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    QandA=event.message.text.split('/')
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
-    print(QandA)
+    if '學習/' in event.message.text:
+        QandA=event.message.text.split('/')
+        try:
+            learnSomething.input_Q(QandA[1],QandA[2])
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="我學會了!!"))            
+        except:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(event.message.text))
+    else:
+        try:
+            ans=learnSomething.output_A(event.message.text)
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=ans))   
+        except:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="傻逼~")) 
+
+
+    
 if __name__ == "__main__":
     app.run()
 
