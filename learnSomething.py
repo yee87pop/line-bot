@@ -2,7 +2,7 @@ import os
 import psycopg2
 
 def input_Q(q,a): 
-    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a penguin-talk').read()[:-1]
+    DATABASE_URL = os.environ['DATABASE_URL']
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = conn.cursor()
@@ -22,7 +22,7 @@ def input_Q(q,a):
     conn.close()
 
 def output_A(inp):
-    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a penguin-talk').read()[:-1]
+    DATABASE_URL = os.environ['DATABASE_URL']
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = conn.cursor()
