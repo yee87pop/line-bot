@@ -18,4 +18,4 @@ def crawler(reply):
     for s in sel:
         b.append(s.text)
     return str(b)
-#crawler(event.message.text)
+crawler("Gossiping")

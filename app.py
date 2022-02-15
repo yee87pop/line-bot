@@ -12,7 +12,7 @@ from linebot.models import (
 import configparser
 import requests
 from bs4 import BeautifulSoup
-from untitled2 import crawler
+from craw import crawler
 
 
 app = Flask(__name__)
@@ -45,10 +45,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    QandA=event.message.text.split('/')
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=crawler(event.message.text)))
-    print(type(event.message.text))
+    print(QandA)
 if __name__ == "__main__":
     app.run()
 
