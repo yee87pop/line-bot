@@ -48,7 +48,7 @@ def handle_message(event):
     QandA=event.message.text.split('/')
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=crawler(event.message.text)))
+        TextSendMessage(text=event.message.text))
     print(QandA)
 if __name__ == "__main__":
     app.run()
