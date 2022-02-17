@@ -14,6 +14,9 @@ import configparser
 import os
 import psycopg2
 import learnSomething
+import weather
+import json
+import requests
 
 app = Flask(__name__)
 
@@ -45,7 +48,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if '學習/' in event.message.text:
+    if ('學習/' in event.message.text) and (not('//' in event.message.text)):
         QandA=event.message.text.split('/')
         try:
             print(QandA)
@@ -56,7 +59,16 @@ def handle_message(event):
         except:
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(event.message.text))
+            TextSendMessage(text="傻逼亂教"))
+    elif '今天天氣' in event.message.text :
+        try:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=weather.weather_search(event.message.text[0]+event.message.text[1])))           
+        except:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="沒有這個地方喔北七"))
     else:
         try:
             print(event.message.text)
