@@ -17,4 +17,4 @@ def weather_search(location):
         temprature_low=data["records"]["location"][0]["weatherElement"][2]["time"][2]['parameter']['parameterName']
         temprature_high=data["records"]["location"][0]["weatherElement"][4]["time"][2]['parameter']['parameterName']
 
-    return "{0}今天天氣為{1}，降雨機率為{2}，最高溫為{3}，最低溫為{4}".format(location,weather,rain_percent,temprature_high,temprature_low)
+    return "{0}明天天天氣為{1}，降雨機率為{2}%，最高溫為{3}度C，最低溫為{4}度C".format(location,weather,rain_percent,temprature_high,temprature_low)
