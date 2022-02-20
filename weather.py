@@ -1,7 +1,7 @@
 import requests
 import json
 def weather_search(location):
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001"
+    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001"
     params = {
         "Authorization": "CWB-0CD62FEF-91F4-407F-B266-2A85D8A8810D",
         "locationName": "{0}".format(location),
