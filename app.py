@@ -60,7 +60,7 @@ def handle_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="傻逼亂教"))
-    elif '今天天氣' in event.message.text :
+    elif '明天天氣' in event.message.text :
         try:
             line_bot_api.reply_message(
             event.reply_token,

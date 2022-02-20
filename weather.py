@@ -12,8 +12,9 @@ def weather_search(location):
         data = json.loads(response.text)
 
         location = data["records"]["location"][0]["locationName"]
-        weather = data["records"]["location"][0]["weatherElement"][-1]["elementValue"]
-        temprature_low=data["records"]["location"][0]["weatherElement"][-5]["elementValue"]
-        temprature_high=data["records"]["location"][0]["weatherElement"][-7]["elementValue"]
+        weather = data["records"]["location"][0]["weatherElement"][0]["time"][2]['parameter']['parameterName']
+        rain_percent = data["records"]["location"][0]["weatherElement"][1]["time"][2]['parameter']['parameterName']
+        temprature_low=data["records"]["location"][0]["weatherElement"][2]["time"][2]['parameter']['parameterName']
+        temprature_high=data["records"]["location"][0]["weatherElement"][4]["time"][2]['parameter']['parameterName']
 
-    return "{0}今天天氣為{1}，最高溫為{2}，最低溫為{3}".format(location,weather,temprature_high,temprature_low)
+    return "{0}今天天氣為{1}，降雨機率為{2}，最高溫為{3}，最低溫為{4}".format(location,weather,rain_percent,temprature_high,temprature_low)
