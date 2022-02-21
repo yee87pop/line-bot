@@ -55,11 +55,11 @@ def handle_message(event):
             learnSomething.input_Q(QandA[1],QandA[2])
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="我學會了!!"))            
+            TextSendMessage(text="我學會了!!"))       
         except:
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="傻逼亂教"))
+            TextSendMessage(text="我聽不懂"))
     elif '明天天氣' in event.message.text :
         try:
             line_bot_api.reply_message(
@@ -68,18 +68,18 @@ def handle_message(event):
         except:
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="沒有這個地方喔北七"))
+            TextSendMessage(text="沒有這個地方喔"))
     else:
         try:
             print(event.message.text)
             ans=learnSomething.output_A(event.message.text)
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=ans))   
+            TextSendMessage(text=ans+"，我不知道要回甚麼，所以只能學你"))   
         except:
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="傻逼~")) 
+            TextSendMessage(text="聽無")) 
 
 
     
