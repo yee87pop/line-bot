@@ -75,7 +75,7 @@ def handle_message(event):
             ans=learnSomething.output_A(event.message.text)
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=ans+"，我不知道要回甚麼，所以只能學你"))   
+            TextSendMessage(text=ans))   
         except:
             line_bot_api.reply_message(
             event.reply_token,
