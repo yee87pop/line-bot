@@ -19,6 +19,7 @@ import json
 import requests
 import string
 import random
+
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
