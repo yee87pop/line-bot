@@ -91,7 +91,7 @@ def handle_message2(event):
         with open(path, 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
-            print("save successed")
+                print("save successed")
         line_bot_api.reply_message(
         event.reply_token,
         ImageSendMessage(
