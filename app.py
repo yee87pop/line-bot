@@ -17,8 +17,8 @@ import learnSomething
 import weather
 import json
 import requests
-import random
 import string
+import random
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
