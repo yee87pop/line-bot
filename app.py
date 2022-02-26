@@ -86,7 +86,7 @@ def handle_message(event):
 def handle_message2(event):
     try:
         message_content = line_bot_api.get_message_content(event.message.id)
-        with open('/content/img.png', 'wb') as fd:
+        with open('./content/img.png', 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
         line_bot_api.reply_message(
@@ -95,8 +95,8 @@ def handle_message2(event):
         original_content_url='https://www.greenpeace.org/static/planet4-hongkong-stateless/2019/10/90e80dbb-penguin-chick.jpg',
         preview_image_url='https://upload.wikimedia.org/wikipedia/commons/c/cd/Chinstrap_Penguin.jpg'
         ))        
-    except:
-        print('error')
+    except Exception as e:
+        print(e)
         line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text="error"))
