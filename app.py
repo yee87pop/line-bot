@@ -87,9 +87,10 @@ def handle_message(event):
 def handle_message2(event):
     try:
         message_content = line_bot_api.get_message_content(event.message.id)
-        path = './Image/hello.txt'
+        path = './Image/hello.png'
         with open(path, 'wb') as fd:
-            fd.write('so good')
+            for chunk in message_content.iter_content():
+                fd.write(chunk)
         line_bot_api.reply_message(
         event.reply_token,
         ImageSendMessage(
