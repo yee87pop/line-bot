@@ -85,12 +85,9 @@ def handle_message(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message2(event):
     try:
-        image_name = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(4))
-        image_content = line_bot_api.get_message_content(event.message.id)
-        image_name = image_name.upper()+'.jpg'
-        path='./content/'+image_name
-        with open(path, 'wb') as fd:
-            for chunk in image_content.iter_content():
+        message_content = line_bot_api.get_message_content(event.message.id)
+        with open('./content/img.png', 'wb') as fd:
+            for chunk in message_content.iter_content():
                 fd.write(chunk)
         line_bot_api.reply_message(
         event.reply_token,
