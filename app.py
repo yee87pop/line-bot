@@ -17,7 +17,8 @@ import learnSomething
 import weather
 import json
 import requests
-
+import random
+import string
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
@@ -84,10 +85,12 @@ def handle_message(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message2(event):
     try:
-        message_content = line_bot_api.get_message_content(event.message.id)
-        path='./content/img.png'
+        image_name = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(4))
+        image_content = line_bot_api.get_message_content(event.message.id)
+        image_name = image_name.upper()+'.jpg'
+        path='./static/'+image_name
         with open(path, 'wb') as fd:
-            for chunk in message_content.iter_content():
+            for chunk in image_content.iter_content():
                 fd.write(chunk)
         line_bot_api.reply_message(
         event.reply_token,
