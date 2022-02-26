@@ -29,14 +29,14 @@ handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    # get X-Line-Signature header value
+    
     signature = request.headers['X-Line-Signature']
 
-    # get request body as text
+    
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # handle webhook body
+    
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -85,7 +85,10 @@ def handle_message(event):
 def handle_message2(event):
     try:
         message_content = line_bot_api.get_message_content(event.message.id)
-        print(message_content)
+        path='./content/img.png'
+        with open(path, 'wb') as fd:
+            for chunk in message_content.iter_content():
+                fd.write(chunk)
         line_bot_api.reply_message(
         event.reply_token,
         ImageSendMessage(
