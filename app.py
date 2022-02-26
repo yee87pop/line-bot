@@ -88,7 +88,7 @@ def handle_message2(event):
         image_name = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(4))
         image_content = line_bot_api.get_message_content(event.message.id)
         image_name = image_name.upper()+'.jpg'
-        path='./static/'+image_name
+        path='./content/'+image_name
         with open(path, 'wb') as fd:
             for chunk in image_content.iter_content():
                 fd.write(chunk)
