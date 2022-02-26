@@ -84,10 +84,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message2(event):
     try:
-        message_content = line_bot_api.get_message_content(event.message.id)
-        with open('D:\Desktop_d\line-bot\content', 'wb') as fd:
-            for chunk in message_content.iter_content():
-                fd.write(chunk)
+
         line_bot_api.reply_message(
         event.reply_token,
         ImageSendMessage(
