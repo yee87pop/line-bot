@@ -80,7 +80,7 @@ def handle_message(event):
         except:
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="聽無")) 
+            TextSendMessage(text="聽不懂")) 
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message2(event):
